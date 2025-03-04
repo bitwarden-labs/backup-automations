@@ -2,7 +2,7 @@ name: "Bitwarden Org Vault Backup"
 on:
   push:
     branches:
-      - main
+      - GHA_Backup
   # Uncomment this to run daily
   # schedule:
   #   - cron: "0 0 * * *"
