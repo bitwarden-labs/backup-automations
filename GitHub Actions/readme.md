@@ -22,7 +22,7 @@ To use Bitwarden Secrets Manager:
 2. **Store the necessary secrets** (e.g., API credentials, encryption password, and S3 storage details).
 3. **Retrieve the Secrets Manager IDs** for each secret.
 4. **Store these IDs in GitHub Secrets** instead of the actual secret values.
-5. **Use the Bitwarden Secrets Manager GitHub Action** to fetch the secrets during workflow execution.
+5. **Use the Bitwarden Secrets Manager GitHub Action** to fetch the secret IDs during workflow execution.
 
 For more details, visit the [Bitwarden Secrets Manager documentation](https://bitwarden.com/help/secrets-manager/).
 
@@ -35,12 +35,12 @@ This example workflow uses **Civo Object Storage** as the backup destination. Ci
 1. **Create a Civo account** at [Civo Cloud](https://www.civo.com/).
 2. **Navigate to Object Storage** and create a new bucket.
 3. **Generate Access Keys** under the Object Storage settings.
-4. **Store the credentials as GitHub Secrets** in your repository:
+4. **Store the credentials as Bitwarden Secrets**:
    - `BW_SM_BITWARDEN_S3_ACCESS_KEY_ID`
    - `BW_SM_BITWARDEN_S3_SECRET_ACCESS_KEY_ID`
    - `BW_SM_BITWARDEN_S3_ENDPOINT_URL_ID`
    - `BW_SM_BITWARDEN_S3_BUCKET_NAME_ID`
-5. **Ensure s3cmd is installed** to interact with Civo Object Storage.
+
 
 For more details, visit the [Civo Object Storage documentation](https://www.civo.com/docs/object-storage).
 
@@ -50,8 +50,8 @@ Set up the following secrets in your repository, storing only the **Bitwarden Se
 
 | Secret Name                               | Description                             |
 | ----------------------------------------- | --------------------------------------- |
-| `BW_SM_TOKEN`                             | Bitwarden API token for authentication  |
-| `BW_SM_URL`                               | Bitwarden API base URL                  |
+| `BW_SM_TOKEN`                             | Bitwarden Secrets Manager machine API token for authentication with Bitwarden Secrets Manager  |
+| `BW_SM_URL`                               | Bitwarden Secrets Manager API base URL                  |
 | `BW_SM_BITWARDEN_EMAIL_ID`                | Bitwarden email ID stored in Secrets Manager |
 | `BW_SM_BITWARDEN_PASSWORD_ID`             | Bitwarden password ID stored in Secrets Manager |
 | `BW_SM_BITWARDEN_CLIENT_ID_ID`            | Bitwarden client ID stored in Secrets Manager |
@@ -66,6 +66,19 @@ Set up the following secrets in your repository, storing only the **Bitwarden Se
 ## Usage
 
 Also viewable [here](https://github.com/bitwarden-labs/backup-automations/blob/main/.github/workflows/vault-backup.yml)
+
+### Overview of steps
+
+1.) The Github Action is triggered, in this example we show both a push to main and also a nightly scheduled task using cron
+2.) The Bitwarden Secrets Manager Action is used to connect to Bitwarden Secrets Manager, retrieving the API key to do so from the Github Actions secrets
+3.) The Bitwarden Secrets Manager Action then retrieves the IDs from Github Secrets to retrieve the actual secret values from Bitwarden Secrets Manager
+4.) S3CMD is installed
+5.) Bitwarden CLI is installed
+6.) Log into Bitwarden using the api key method, utilizing the users client ID and secret (pulled previously from secrets manager) 
+7.) Unlock the vault with the users master password
+8.) Export the vault using the Bitwarden CLI, ensuring the export is encrypted using the secret also pulled previously.
+9.) Upload the exported vault to the configured s3 storage account
+10.) Cleanup backups, retaining the last 10 backups in the S3 storage 
 
 ### Workflow Configuration
 
