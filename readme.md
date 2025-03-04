@@ -8,4 +8,4 @@ These scripts are also not actively maintained, however if you do have a specifi
 
 ## Examples
 
-[Backup Organisation Vault to S3 Storage Using Github Actions]()
+[Backup Organisation Vault to S3 Storage Using Github Actions](https://github.com/bitwarden-labs/backup-automations/blob/main/GitHub%20Actions/readme.md)
