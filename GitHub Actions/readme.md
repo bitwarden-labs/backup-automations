@@ -65,6 +65,8 @@ Set up the following secrets in your repository, storing only the **Bitwarden Se
 
 ## Usage
 
+Also viewable [here](https://github.com/keithhubner/bwbackup/blob/main/.github/workflows/main.yml)
+
 ### Workflow Configuration
 
 ```yaml
