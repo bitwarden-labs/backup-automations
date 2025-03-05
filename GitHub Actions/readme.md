@@ -69,16 +69,16 @@ Also viewable [here](https://github.com/bitwarden-labs/backup-automations/blob/m
 
 ### Overview of steps
 
-1.) The Github Action is triggered, in this example we show both a push to main and also a nightly scheduled task using cron
-2.) The Bitwarden Secrets Manager Action is used to connect to Bitwarden Secrets Manager, retrieving the API key to do so from the Github Actions secrets
-3.) The Bitwarden Secrets Manager Action then retrieves the IDs from Github Secrets to retrieve the actual secret values from Bitwarden Secrets Manager
-4.) S3CMD is installed
-5.) Bitwarden CLI is installed
-6.) Log into Bitwarden using the api key method, utilizing the users client ID and secret (pulled previously from secrets manager) 
-7.) Unlock the vault with the users master password
-8.) Export the vault using the Bitwarden CLI, ensuring the export is encrypted using the secret also pulled previously.
-9.) Upload the exported vault to the configured s3 storage account
-10.) Cleanup backups, retaining the last 10 backups in the S3 storage 
+1. The GitHub Action is triggered, in this example we show both a push to main and also a nightly scheduled task using cron.
+2. The Bitwarden Secrets Manager Action is used to connect to Bitwarden Secrets Manager, retrieving the API key to do so from the GitHub Actions secrets.
+3. The Bitwarden Secrets Manager Action then retrieves the IDs from GitHub Secrets to retrieve the actual secret values from Bitwarden Secrets Manager.
+4. S3CMD is installed.
+5. Bitwarden CLI is installed.
+6. Log into Bitwarden using the API key method, utilizing the user's client ID and secret (pulled previously from Secrets Manager).
+7. Unlock the vault with the user's master password.
+8. Export the vault using the Bitwarden CLI, ensuring the export is encrypted using the secret also pulled previously.
+9. Upload the exported vault to the configured S3 storage account.
+10. Cleanup backups, retaining the last 10 backups in the S3 storage.
 
 ### Workflow Configuration
 
