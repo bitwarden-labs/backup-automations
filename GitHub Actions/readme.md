@@ -4,13 +4,15 @@
 
 This GitHub Action automates the backup of a Bitwarden organization vault and uploads it to an S3-compatible object storage. It runs on every push to the `main` branch and can also be scheduled to run daily.
 
+![Bitwarden Logo](../GitHub%20Actions/img/valut-backup-workflow.svg)
+
 ## Prerequisites
 
 Before using this action, ensure you have the following:
 
 - A **Bitwarden account** with API access ([Bitwarden CLI Docs](https://bitwarden.com/help/cli/))
 - **Bitwarden Secrets Manager** to securely store and retrieve secrets ([Bitwarden Secrets Manager Docs](https://bitwarden.com/help/secrets-manager/))
-- An **S3-compatible object storage** (e.g., AWS S3, Civo Object Storage)
+- An **S3-compatible object storage** (e.g., AWS S3, [Civo Object Storage](https://www.civo.com/docs/object-stores))
 - A **GitHub repository** with Secrets configured for authentication and storage access
 
 ### Using Bitwarden Secrets Manager
